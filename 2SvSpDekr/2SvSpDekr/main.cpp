@@ -60,9 +60,9 @@ int main()
 	List<int>::Iterator it = intList->end();
 	int data;
 
-	//intList->remove(it--, data);
-	//cout << "Removed last element" << endl;
-	//cout << *intList << "\n";
+	intList->remove(it--, data);
+	cout << "Removed last element" << endl;
+	cout << *intList << "\n";
 
 	intList->remove(--it, data);
 	cout << "Removed last but one element" << endl;

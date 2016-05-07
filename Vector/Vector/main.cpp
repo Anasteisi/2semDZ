@@ -12,14 +12,14 @@ int main()
 	cout << qwerty.getSize() << endl;//razmer
 	qwerty.print();//vyvod
 
-	char manArray[5] = {'g','h','j','k','l'};//massiv
+	int manArray[5] = { 1,2,3,4,5 };;//massiv
 
-	Vector<char> arr2(5, manArray);//konstruktor s size i massivom elementov
+	Vector<int> arr2(5, manArray);//konstruktor s size i massivom elementov
 	cout << arr2.getSize() << endl;
 
 	arr2.print();//vyvod arr2
-	arr2.setElem(0, 'p'); // arr2.array[0] = p;
-	arr2.setElem(1, 'm');  // arr2.array[0] = m;
+	arr2.setElem(0, 55); // arr2.array[0] = p;
+	arr2.setElem(1, 66);  // arr2.array[0] = m;
 	arr2.print();//vyvod arr2
 
 	arr2.setSize(5);//obrezka
@@ -31,38 +31,28 @@ int main()
 	arr2.deleteElem(1);//delete 2 element
 	arr2.print();//vyvod arr2
 
-	arr2.addElem('b');//+ b -- v konec
+	arr2.addElem(44);//+ b -- v konec
 	arr2.print();//vyvod arr2
 
-	Vector<char> arr3(arr2);//konstruktor copy
+	Vector<int> arr3(arr2);//konstruktor copy
 	arr3.print();
 
-	arr2.addElem('i');//+ i -- v konec
+	arr2.addElem(56);//+ i -- v konec
 	arr2.print();
 	arr3.print();
+	cout << "Sortirovka po vozrastaniju => " << endl;
+	arr3.sortElems(Vozr);
+	arr3.print();
 
-	arr2.print();
-	cout << "Sortirovka => ";
-	arr2.sortElems(Ub);
-	arr2.print();
-
-	//Vector<int>* arr_pointer = new Vector<int>(10, true);//dinamicheskoe sozdanie objecta cherez ukazatel'(10 randomnyh elementov) ???
-	//arr_pointer->print(); //???
-
-	Vector<char>* arr_pointers = new Vector<char>[3]; //dinamicheskii massiv objectov
+	Vector<int>* arr_pointers = new Vector<int>[3]; //dinamicheskii massiv objectov
 
 	for (int i = 0; i < 3; ++i)
 	{
 		arr_pointers[i].print();//vyvod massiva objectob
 	}
-	
-	//Vector<int> arr_cmp = qwerty.TArrayCompare(arr2);//arr_cmp=max(qwerty,arr2) ???
-	//arr_cmp.print();// ???
 
-	//cout << arr_pointer->getArrCount() << endl; //???
-	cout << Vector<char>::getArrCount() << endl;
+	cout << Vector<int>::getArrCount() << endl;
 
-	//delete arr_pointer; //ochistka pamyati (destruktor) ???
 	delete[] arr_pointers; //ochistka pamyati (destruktor)
 
 	cout << "arr2.getSize = " << arr2.getSize() << endl;
@@ -74,6 +64,28 @@ int main()
 	{
 		cout << rng_err.what() << endl;
 	}
+
+	St* AAA = new St[5];//massiv struktur
+	for (int i = 0; i < 5;i++)//zapolnenie
+		AAA[i].A = i;
+
+	AAA[0].B = "Ivanov";
+	AAA[1].B = "Petrov";
+	AAA[2].B = "Sidorov";
+	AAA[3].B = "Belov";
+	AAA[4].B = "Afanas'ev";
+
+	cout << "Massiv struktur: " << endl;
+	for (int i = 0; i < 5;i++)
+		cout << AAA[i].A << " : " << AAA[i].B << endl;//vyvod massiva struktur
+
+	Vector<St> STT(5, AAA);//konstruktor klassa
+	cout << "Klass struktur: " << endl;
+	STT.print();//vyvod klassa struktur 
+
+	STT.sortElems();//sortirovka po alfavitu -- polu B
+	cout << "Sortirovka po alfavitu: " << endl;
+	STT.print();//vyvod otsortirovannogo massiva
 
 	system("pause");
 	return 0;

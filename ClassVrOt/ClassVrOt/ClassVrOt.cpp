@@ -45,7 +45,7 @@ Time::~Time()
 
 void Time::print()
 {
-	cout << h << ":" << m << ":" << s << endl;
+	cout << "Vremya " << h << ":" << m << ":" << s << endl;
 }
 
 Time Time::operator-(Time vr1)

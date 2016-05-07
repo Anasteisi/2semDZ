@@ -2,6 +2,18 @@
 
 using namespace std;
 
+struct St
+{
+	int A;//pole 1
+	char* B;//pole 2
+
+	St()
+	{
+		A = 0;
+		B = nullptr;
+	}
+};
+
 template <typename T>
 class Vector
 {
@@ -14,13 +26,11 @@ public:
 	void addElem(T val);//+ elem[size]==val
 	void addElemMiddle(int index, T val);//+elem[index]==val
 	static int getArrCount() {return arrCount;}//tekuschee kolichestvo sozdannyh objectov
-										 //Vector& TArrayCompare(Vector& anotherArr);//Sravnenie massivov po razmeru, vorvrat ukazatelya na bolshii ???
-	void sortElems(bool (*res)(T,T));//sortirovka elementov
+	void sortElems(bool(*res)(T, T));//sortirovka elementov
 
 	Vector();//konstruktor po umolchaniyu
 	Vector(int n, const T* arr);//konstruktor s size i massivom elementov
 	Vector(const Vector& sec_arr);//konstruktor copy
-								  //Vector(int n, bool random = false);//konstruktor n randomnyh elementov, esli false //???
 
 	~Vector();//destruktor
 
@@ -39,7 +49,7 @@ int Vector<T>::getSize() const //razmer massiva
 }
 
 template <typename T>
-void Vector<T>::setSize(int n) //obrezaet massiv ili dopolnyaet 1 do n
+void Vector<T>::setSize(int n) //obrezka massiv ili dopolnenie 0 do n
 {
 	T* tmpArr = new T[n];
 	if (n <= size)
@@ -52,7 +62,7 @@ void Vector<T>::setSize(int n) //obrezaet massiv ili dopolnyaet 1 do n
 		for (int i = 0; i < size; ++i)
 			tmpArr[i] = array[i];
 		for (int i = size ; i < n; ++i)
-			tmpArr[i] = 1;
+			tmpArr[i] = 0;
 	}
 
 	size = n;//novyi razmer
@@ -132,31 +142,14 @@ void Vector<T>::addElemMiddle(int index, T val) //+elem[index]==val
 	array = tmp;
 }
 
-/*
 template <typename T>
-& Vector<T>::TArrayCompare(Vector& anotherArr) //Sravnenie massivov po razmeru, vorvrat ukazatelya na bolshii //???
-{
-if (anotherArr.getSize() > this->getSize())
-return anotherArr;
-else
-return *this;
-}
-*/
-
-template <typename T>
-bool Vozr(T a, T b)
+bool Vozr(T a, T b)//sravnenie dlya int, double
 {
 	return a > b;
 }
 
 template <typename T>
-bool Ub(T a, T b)
-{
-	return a < b;
-}
-
-template <typename T>
-void Obmen(T &a, T &b)
+void Obmen(T &a, T &b)//obmen znachenii
 {
 	T tmp = a;
 	a = b;
@@ -164,7 +157,25 @@ void Obmen(T &a, T &b)
 }
 
 template <typename T>
-void Vector<T>::sortElems(bool(*res)(T, T))
+void Vector<T>::sortElems(bool(*res)(T, T) = Vozr)//sortirovka po vozrastaniju dlya int, bool
+{
+	for (int i = 1;i<size;++i)
+		for (int j = 0;j<size - i;++j)
+			if (res(array[j], array[j + 1]) == true)
+				Obmen(array[j], array[j + 1]);
+}
+
+bool VozrA(St a, St b)// a > b
+{
+	return a.A > b.A;
+}
+
+bool VozrB(St a, St b)//a nizhe b po alfavitu
+{
+	return strcmp(a.B, b.B) > 0;
+}
+
+void Vector<St>::sortElems(bool(*res)(St, St)= VozrB)//sortirovka po alfavitu dlya struktur
 {
 	for (int i = 1;i<size;++i)
 		for (int j = 0;j<size - i;++j)
@@ -200,23 +211,6 @@ Vector<T>::Vector(const Vector& sec_arr) //konstruktor copy
 	++arrCount;
 }
 
-/*template <typename T>
-Vector<T>::Vector(int n, bool random) //konstruktor n randomnyh elementov, esli false ???
-{
-srand(time(NULL));
-size = n;
-array = new int[size];
-
-for (int i = 0; i < size; ++i)
-{
-if (random == false)
-array[i] = 0;
-else
-array[i] = rand() % 10;
-}
-++arrCount;
-}*/
-
 template <typename T>
 Vector<T>::~Vector() //destruktor
 {
@@ -230,4 +224,10 @@ void Vector<T>::print() const //vyvod massiva na konsol'
 	for (int i = 0; i < size; ++i)
 		cout << array[i] << " ";
 	cout << endl;
+}
+
+void Vector<St>::print() const //vyvod massiva struktur na konsol'
+{
+	for (int i = 0; i < size; ++i)
+		cout << array[i].A << " : " << array[i].B << endl;
 }

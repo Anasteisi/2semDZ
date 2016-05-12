@@ -167,7 +167,7 @@ void Obmen(T &a, T &b)//obmen znachenii
 }
 
 template <typename T>
-void Vector<T>::sortElems(bool(*res)(T, T))//sortirovka po vozrastaniju dlya int, bool
+void Vector<T>::sortElems(bool(*res)(T, T))//sortirovka
 {
 	for (int i = 1;i<size;++i)
 		for (int j = 0;j<size - i;++j)

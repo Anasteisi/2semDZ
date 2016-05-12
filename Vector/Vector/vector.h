@@ -26,7 +26,7 @@ public:
 	void addElem(T val);//+ elem[size]==val
 	void addElemMiddle(int index, T val);//+elem[index]==val
 	static int getArrCount() {return arrCount;}//tekuschee kolichestvo sozdannyh objectov
-	void sortElems(bool(*res)(T, T) = Vozr);//sortirovka elementov
+	void sortElems(bool(*res)(T, T) = Vozr);//sortirovka elementov, () -- int, double
 
 	Vector();//konstruktor po umolchaniyu
 	Vector(int n, const T* arr);//konstruktor s size i massivom elementov

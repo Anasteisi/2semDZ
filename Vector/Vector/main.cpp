@@ -12,17 +12,17 @@ int main()
 	cout << qwerty.getSize() << endl;//razmer
 	qwerty.print();//vyvod
 
-	int manArray[5] = { 1,2,3,4,5 };;//massiv
+	int manArray[5] = { 1,2,3,4,5 };//massiv
 
 	Vector<int> arr2(5, manArray);//konstruktor s size i massivom elementov
 	cout << arr2.getSize() << endl;
 
 	arr2.print();//vyvod arr2
-	arr2.setElem(0, 55); // arr2.array[0] = p;
-	arr2.setElem(1, 66);  // arr2.array[0] = m;
+	arr2.setElem(0, 55); // arr2.array[0] = 55;
+	arr2.setElem(1, 66);  // arr2.array[0] = 66;
 	arr2.print();//vyvod arr2
 
-	arr2.setSize(5);//obrezka
+	arr2.setSize(4);//obrezka
 	arr2.print();//vyvod arr2
 
 	arr2.setSize(15);//+0 do 15 elementov
@@ -41,8 +41,8 @@ int main()
 	arr2.print();
 	arr3.print();
 	cout << "Sortirovka po vozrastaniju => " << endl;
-	arr3.sortElems(Vozr);
-	arr3.print();
+	arr2.sortElems();
+	arr2.print();
 
 	Vector<int>* arr_pointers = new Vector<int>[3]; //dinamicheskii massiv objectov
 
@@ -83,7 +83,7 @@ int main()
 	cout << "Klass struktur: " << endl;
 	STT.print();//vyvod klassa struktur 
 
-	STT.sortElems();//sortirovka po alfavitu -- polu B
+	STT.sortElems(VozrB);//sortirovka po alfavitu -- polu B
 	cout << "Sortirovka po alfavitu: " << endl;
 	STT.print();//vyvod otsortirovannogo massiva
 

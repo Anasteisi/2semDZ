@@ -26,7 +26,7 @@ public:
 	void addElem(T val);//+ elem[size]==val
 	void addElemMiddle(int index, T val);//+elem[index]==val
 	static int getArrCount() {return arrCount;}//tekuschee kolichestvo sozdannyh objectov
-	void sortElems(bool(*res)(T, T));//sortirovka elementov
+	void sortElems(bool(*res)(T, T) = Vozr);//sortirovka elementov
 
 	Vector();//konstruktor po umolchaniyu
 	Vector(int n, const T* arr);//konstruktor s size i massivom elementov
@@ -148,6 +148,16 @@ bool Vozr(T a, T b)//sravnenie dlya int, double
 	return a > b;
 }
 
+bool VozrA(St a, St b)// sravnenie dlya Struct St pole A a > polya A b
+{
+	return a.A > b.A;
+}
+
+bool VozrB(St a, St b)//sravnenie dlya Struct St pole B a nizhe polya B b po alfavitu
+{
+	return strcmp(a.B, b.B) > 0;
+}
+
 template <typename T>
 void Obmen(T &a, T &b)//obmen znachenii
 {
@@ -157,25 +167,7 @@ void Obmen(T &a, T &b)//obmen znachenii
 }
 
 template <typename T>
-void Vector<T>::sortElems(bool(*res)(T, T) = Vozr)//sortirovka po vozrastaniju dlya int, bool
-{
-	for (int i = 1;i<size;++i)
-		for (int j = 0;j<size - i;++j)
-			if (res(array[j], array[j + 1]) == true)
-				Obmen(array[j], array[j + 1]);
-}
-
-bool VozrA(St a, St b)// a > b
-{
-	return a.A > b.A;
-}
-
-bool VozrB(St a, St b)//a nizhe b po alfavitu
-{
-	return strcmp(a.B, b.B) > 0;
-}
-
-void Vector<St>::sortElems(bool(*res)(St, St)= VozrB)//sortirovka po alfavitu dlya struktur
+void Vector<T>::sortElems(bool(*res)(T, T))//sortirovka po vozrastaniju dlya int, bool
 {
 	for (int i = 1;i<size;++i)
 		for (int j = 0;j<size - i;++j)

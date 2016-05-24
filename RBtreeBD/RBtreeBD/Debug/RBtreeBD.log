@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\анастасия\documents\visual studio 2015\projects\rbtreebd\rbtreebd\header.h(560): warning C4715: RBtree<ZapisBD>::find_subtree: значение возвращается не при всех путях выполнения
+  RBtreeBD.vcxproj -> C:\Users\Анастасия\Documents\Visual Studio 2015\Projects\RBtreeBD\Debug\RBtreeBD.exe
